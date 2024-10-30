@@ -7,7 +7,6 @@ const Home = () => {
     <div>
       <h1>Welcome to the Application</h1>
       <p>This is the home page, accessible to all authenticated users.</p>
-      {/* Links to navigate to different dashboards based on user role */}
       <div>
         <h2>Navigate to Dashboards</h2>
         <p><Link to="/admin">Go to Admin Dashboard</Link></p>

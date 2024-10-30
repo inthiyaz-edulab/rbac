@@ -6,7 +6,6 @@ const Admin = () => {
     <div>
       <h1>Admin Dashboard</h1>
       <p>Welcome to the admin dashboard. Only users with the "admin" role can view this page.</p>
-      {/* You can add more admin-specific functionality here */}
       <div>
         <h2>Admin Controls</h2>
         <ul>
