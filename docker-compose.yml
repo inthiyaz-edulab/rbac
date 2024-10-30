@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_VENDOR=h2  # Use H2 database for simplicity (default)
+    command: start-dev  # Use start-dev to run Keycloak in development mode
