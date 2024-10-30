@@ -17,7 +17,6 @@ This is a Role-Based Access Control (RBAC) application built with React, Keycloa
 - **React**: For building the user interface
 - **Keycloak**: For managing authentication and authorization
 - **Docker**: For containerizing the Keycloak server
-- **Remix**: For server-rendered React with optimized performance and routes
 
 ## Features
 
