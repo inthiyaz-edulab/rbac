@@ -11,7 +11,6 @@ This is a Role-Based Access Control (RBAC) application built with React, Keycloa
 - [Usage](#usage)
 - [Environment Variables](#environment-variables)
 - [Components](#components)
-- [License](#license)
 
 ## Technologies
 
