@@ -1,7 +1,12 @@
+// src/components/AdminDashboard.jsx
+
 import React from "react";
-import "./AdminDashboard.css"; // Make sure to add your CSS file
+import { usePermissions } from "../contexts/PermissionsContext";
+import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
+  const { permissions, togglePermission } = usePermissions();
+
   return (
     <div className="dashboard-container">
       {/* Sidebar */}
@@ -18,25 +23,44 @@ const AdminDashboard = () => {
 
       {/* Main Content */}
       <div className="main-content">
-        {/* Navbar */}
         <header className="navbar">
-          <div className="navbar-left">
-            <h1>Admin Dashboard</h1>
-          </div>
-          <div className="navbar-right">
-            <input
-              type="text"
-              className="search-bar"
-              placeholder="Search..."
-            />
-          </div>
+          <h1>Admin Dashboard</h1>
         </header>
 
-        {/* Dashboard Content */}
-        <div className="content">
-          <h2>Welcome to the Admin Dashboard</h2>
-          <p>Here you can manage users, view reports, and adjust settings.</p>
-          {/* Add your additional content or components here */}
+        {/* Admin Controls for Student Features */}
+        <div className="permissions-control">
+          <h2>Control Student Features</h2>
+          
+          {permissions && (
+            <>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={permissions.viewCourses || false}
+                  onChange={() => togglePermission("viewCourses")}
+                />
+                View Courses
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  checked={permissions.viewAssignments || false}
+                  onChange={() => togglePermission("viewAssignments")}
+                />
+                View Assignments
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  checked={permissions.viewProfile || false}
+                  onChange={() => togglePermission("viewProfile")}
+                />
+                View Profile
+              </label>
+            </>
+          )}
         </div>
       </div>
     </div>

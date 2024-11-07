@@ -1,55 +1,24 @@
-// // src/App.jsx
-
-// import Protected from "./components/Protected";
-// import Public from "./components/Public";
-
-// import useAuth from "./hooks/useAuth";
-
-// function App() {
-//   const [isLogin, token] = useAuth();
-//   return isLogin ? <Protected token={token} /> : <Public />;
-// }
-
-// export default App;
-
 // src/App.jsx
-
-// import Protected from "./components/Protected";
-// import Public from "./components/Public";
-// import useAuth from "./hooks/useAuth";
-
-// function App() {
-//   const [isLogin, token] = useAuth();
-//   return isLogin ? <Protected token={token} /> : <Public />;
-// }
-
-// export default App;
-
-
-// src/App.jsx
-import Protected from "./components/Protected";
-import Public from "./components/Public";
+import React from "react";
 import useAuth from "./hooks/useAuth";
 import AdminDashboard from "./components/AdminDashboard";
-import StudentDashboard from "./components/StudentDashboard"; // Updated to reflect your "student" role
-import DefaultDashboard from "./components/DefaultDashboard";
+import StudentDashboard from "./components/StudentDashboard";
+import DefaultDashboard from "./components/DefaultDashboard"; // Added default case for unknown roles
 
 function App() {
-  const [isLogin, token, roles] = useAuth();
+  const [isLogin, token, roles] = useAuth(); // Using Keycloak auth hook
 
   if (!isLogin) {
-    return <Public />;
+    return <div>Loading...</div>; // Display loading while auth is being handled
   }
-
-  console.log("Roles received:", roles);
 
   // Role-based rendering
   if (roles.includes("Admin")) {
-    return <AdminDashboard />;
+    return <AdminDashboard />; // Admin sees the Admin Dashboard
   } else if (roles.includes("Student")) {
-    return <StudentDashboard />; // Navigates to the student dashboard for the "student" role
+    return <StudentDashboard />; // Student sees the Student Dashboard
   } else {
-    return <DefaultDashboard />;
+    return <DefaultDashboard />; // A default dashboard for other roles
   }
 }
 

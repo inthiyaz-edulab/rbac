@@ -1,44 +1,41 @@
 // src/components/StudentDashboard.jsx
 
 import React from "react";
-import "./StudentDashboard.css"; // Add your CSS file
+import { usePermissions } from "../contexts/PermissionsContext";
+import "./StudentDashboard.css";
 
 const StudentDashboard = () => {
+  const { permissions } = usePermissions();
+
   return (
     <div className="dashboard-container">
-      {/* Sidebar */}
       <nav className="sidebar">
         <h2>Student Panel</h2>
         <ul>
           <li>Home</li>
-          <li>My Courses</li>
-          <li>Assignments</li>
-          <li>Profile</li>
+          {permissions.viewCourses && <li>My Courses</li>}
+          {permissions.viewAssignments && <li>Assignments</li>}
+          {permissions.viewProfile && <li>Profile</li>}
           <li>Logout</li>
         </ul>
       </nav>
 
-      {/* Main Content */}
       <div className="main-content">
-        {/* Navbar */}
         <header className="navbar">
-          <div className="navbar-left">
-            <h1>Student Dashboard</h1>
-          </div>
-          <div className="navbar-right">
-            <input
-              type="text"
-              className="search-bar"
-              placeholder="Search..."
-            />
-          </div>
+          <h1>Student Dashboard</h1>
         </header>
 
-        {/* Dashboard Content */}
         <div className="content">
           <h2>Welcome to the Student Dashboard</h2>
-          <p>Here you can view your courses, check assignments, and update your profile.</p>
-          {/* Add your additional content or components here */}
+          {permissions.viewCourses && (
+            <p>Access your courses and track your progress.</p>
+          )}
+          {permissions.viewAssignments && (
+            <p>Check your assignments and submit your work.</p>
+          )}
+          {permissions.viewProfile && (
+            <p>Update your profile and view your details.</p>
+          )}
         </div>
       </div>
     </div>
@@ -46,5 +43,3 @@ const StudentDashboard = () => {
 };
 
 export default StudentDashboard;
-
-
